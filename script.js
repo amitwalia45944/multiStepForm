@@ -1,29 +1,39 @@
 const back_button = document.querySelector("#back");
+const customer_info = document.querySelector("#customer-information");
+const customer_plan = document.querySelector("#customer-plan");
+const customer_plan_add_ons = document.querySelector("#plan-add-ons");
+const customer_finish_form = document.querySelector("#finish-form");
+const customer_last_part = document.querySelector("#last-part");
+const one = document.querySelector("#box-1");
+const two = document.querySelector("#box-2");
+const three = document.querySelector("#box-3");
+const four = document.querySelector("#box-4");
+const container = document.querySelector(".container");
+const check_boxes = document.querySelectorAll(".checkbox");
+const plan_card = document.querySelectorAll(".card");
+const plan_choose = document.querySelector(".plan-add-ons");
+const finishContainer = document.querySelector(".inner-finish-container");
+const thanksContainer = document.querySelector(".thanks");
 
-function show_successful_mssg() {
-    
-};
+function form_validation() {
 
-function clear_error() {
+    function clear_error() {
 
-    let errors = document.getElementsByClassName('show-error');
+        let errors = document.getElementsByClassName('show-error');
 
-    for (let item of errors) {
-        item.textContent = "";
+        for (let item of errors) {
+            item.textContent = "";
+        }
+    };
+
+    function set_error(id, error) {
+        let element = document.getElementById(id);
+
+        element.getElementsByClassName('show-error')[0].textContent = error;
     }
-}
-
-function set_error(id, error) {
-    let element = document.getElementById(id);
-
-    element.getElementsByClassName('show-error')[0].textContent = error;
-}
-
-function validate(event) {
-
-    event.preventDefault();
 
     let flag = true;
+
     clear_error();
 
     let name = document.forms['log-in-form']["name"].value;
@@ -58,8 +68,85 @@ function validate(event) {
         set_error("fphone", "*Invalid mobile format.")
         flag = false;
     }
-    
+
     if (flag) {
-        show_successful_mssg();
+        return true;
     }
-}
+};
+
+container.addEventListener("click", change_page);
+
+function change_page(event) {
+
+    if (event.target.classList.contains("next")) {
+
+        event.preventDefault();
+
+        if (event.target.parentElement.parentElement.classList.contains("customer-info")) {
+
+            if (form_validation()) {
+
+                customer_info.style.display = "none";
+                customer_plan.style.display = "block";
+                one.style.backgroundColor = "transparent";
+                two.style.backgroundColor = "aqua";
+            }
+
+        } else if (event.target.parentElement.parentElement.classList.contains("customer-plan-info")) {
+
+            customer_plan.style.display = "none";
+            customer_plan_add_ons.style.display = "block";
+            two.style.backgroundColor = "transparent";
+            three.style.backgroundColor = "aqua";
+
+            
+
+        } else if (event.target.parentElement.parentElement.classList.contains("customer-plan-add-ons")) {
+
+            customer_plan_add_ons.style.display = "none";
+            customer_finish_form.style.display = "block";
+            three.style.backgroundColor = "transparent";
+            four.style.backgroundColor = "aqua";
+
+        } else if (event.target.parentElement.parentElement.classList.contains("customer-finish-form")) {
+
+            customer_finish_form.style.display = "none";
+            customer_last_part.style.display = "block";
+        }
+
+    } else if (event.target.classList.contains("back")) {
+
+        event.preventDefault();
+
+        if (event.target.parentElement.parentElement.classList.contains("customer-plan-info")) {
+
+            customer_info.style.display = "block";
+            customer_plan.style.display = "none";
+            one.style.backgroundColor = "aqua";
+            two.style.backgroundColor = "transparent";
+
+        } else if (event.target.parentElement.parentElement.classList.contains("customer-plan-add-ons")) {
+
+            customer_plan_add_ons.style.display = "none";
+            customer_plan.style.display = "block";
+            three.style.backgroundColor = "transparent";
+            two.style.backgroundColor = "aqua";
+
+        } else if (event.target.parentElement.parentElement.classList.contains("customer-finish-form")) {
+
+            customer_finish_form.style.display = "none";
+            customer_plan_add_ons.style.display = "block";
+            three.style.backgroundColor = "aqua";
+            four.style.backgroundColor = "transparent";
+        }
+    } else if (event.target.className === "plan") {
+
+
+    } else if (event.target.classList.contains("checkbox")) {
+
+
+    } else if (event.target.dataset.change === "change") {
+
+
+    }
+};
