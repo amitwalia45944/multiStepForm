@@ -42,6 +42,7 @@ ul {
 
 .container {
     display: flex;
+    width: 50vw;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -156,23 +157,21 @@ input {
 .customer-plan-info {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    gap: 2rem;
     justify-content: space-between;
+    height: 100%;
+    gap: 1rem;
 }
 
 .form-middle-section-customer-plan {
     display: flex;
-    justify-content: space-between;
-    gap: 1rem;
+    justify-content: center;
+    gap: 2rem;
 }
 
 .card-plan {
-    flex-basis: 18vw;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 28vh;
     padding: 2rem;
     box-shadow: 0 0 10px #92989e;
     border-radius: 10px;
@@ -231,22 +230,28 @@ input[type="range"]::-webkit-slider-thumb {
 .customer-plan-add-ons {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     height: 100%;
     justify-content: space-between;
 }
 
-.customer-plan-add-ons .bottom {
+.customer-plan-add-ons .middle-section {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .customer-plan-add-ons .services {
     display: flex;
     justify-content: space-between;
     border: 1px solid gray;
-    margin: 1rem;
-    border-radius: 0.2rem;
+    border-radius: 1rem;
     padding: 2rem;
+}
+
+.customer-plan-add-ons .bottom {
+    display: flex;
+    justify-content: space-between;
 }
 
 .customer-plan-add-ons .services .left-part {
@@ -317,12 +322,13 @@ input[type="range"]::-webkit-slider-thumb {
         justify-content: flex-start;
         align-items: flex-start;
     }
-    
+
     .container {
         flex-direction: column;
-        height: 100%;
+        width: 100vw;
         margin: auto;
         position: relative;
+        overflow: auto;
         box-shadow: none;
     }
 
@@ -341,16 +347,23 @@ input[type="range"]::-webkit-slider-thumb {
     .form-card {
         flex-direction: column;
         margin-top: -10%;
+        height: 100%;
         padding: 1rem;
         border-radius: 1rem;
         margin-inline: 2rem;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     }
 
+    .card-plan {
+        padding: 1rem;
+    }
+
     .form-middle-section-customer-plan {
         flex-direction: column;
         gap: 1rem;
+        height: 100%;
     }
+
     .key2 {
         display: none;
     }

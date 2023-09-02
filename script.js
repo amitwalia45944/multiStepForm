@@ -159,18 +159,16 @@ function change_page(event) {
             
             let splitted_plan = plan_info.split('\n');
 
-            let basic_package = document.querySelector('#basic-package')
-            let basic_package_price = document.querySelector('#basic-package-price')
-            console.log(splitted_plan);
+            let basic_package = document.querySelector('#basic-package');
+            let basic_package_price = document.querySelector('#basic-package-price');
+
             basic_package.textContent = splitted_plan[0];
             basic_package_price.textContent = splitted_plan[2];
             total_price1 = splitted_plan[2];
             number1 = parseInt(total_price1.replace(/\D+/g, ''), 10);
 
-            console.log(number1);
-
             let total_price_basic_add_ons = document.querySelector('#total-price-basic-add-ons');
-            console.log(number1 + number2);
+
             total_price_basic_add_ons.textContent = number1 + number2;
             total_price_basic_add_ons.textContent = total_price_basic_add_ons.textContent + "$";
 
@@ -205,6 +203,7 @@ function change_page(event) {
             three.style.backgroundColor = "aqua";
             four.style.backgroundColor = "transparent";
         }
+        
     } else if (event.target.className === "card-plan") {
 
         event.target.style.border = "2px solid #174A8B";
@@ -216,6 +215,7 @@ function change_page(event) {
 
         let extra_add_on_detail = event.target.parentElement.nextElementSibling.firstElementChild.innerText;
         let extra_add_on_price = event.target.parentElement.parentElement.nextElementSibling.firstElementChild.innerText;
+
         let add_ons_service1 = document.querySelector("#add-ons-service1");
         let add_ons_service1_price = document.querySelector("#add-ons-service1-price");
 
@@ -236,9 +236,7 @@ function change_page(event) {
         
         customer_finish_form.style.display = "none";
         customer_plan.style.display = "block";
-        three.style.backgroundColor = "transparent";
+        four.style.backgroundColor = "transparent";
         two.style.backgroundColor = "aqua";
     }
 };
-
-
