@@ -10,10 +10,45 @@ const three = document.querySelector("#box-3");
 const four = document.querySelector("#box-4");
 const container = document.querySelector(".container");
 const check_boxes = document.querySelectorAll(".checkbox");
-const plan_card = document.querySelectorAll(".card");
+const plan_card = document.querySelectorAll(".card-plan");
 const plan_choose = document.querySelector(".plan-add-ons");
 const finishContainer = document.querySelector(".inner-finish-container");
 const thanksContainer = document.querySelector(".thanks");
+
+
+let flag_click_card_plan = false;
+let budget = false;
+let plan_info;
+let total_price1;
+let total_price2;
+let number1;
+let number2;
+let flag_click_add_ons = false;
+
+function plan_change() {
+
+    let budgets = document.querySelectorAll('#money-charges')
+    let choice = document.querySelector('#choice');
+    let yearly_content = document.querySelectorAll('#yearly')
+
+    if (choice.value === '1') {
+        budget = true;
+        budgets[0].textContent = '$90/yr';
+        yearly_content[0].style.display = "block";
+        budgets[1].textContent = '$120/yr';
+        yearly_content[1].style.display = "block";
+        budgets[2].textContent = '$150/yr';
+        yearly_content[2].style.display = "block";
+
+    } else {
+        budgets[0].textContent = '$9/mo';
+        yearly_content[0].style.display = "none";
+        budgets[1].textContent = '$12/mo';
+        yearly_content[1].style.display = "none";
+        budgets[2].textContent = '$15/mo';
+        yearly_content[2].style.display = "none";
+    }
+};
 
 function form_validation() {
 
@@ -94,19 +129,50 @@ function change_page(event) {
 
         } else if (event.target.parentElement.parentElement.classList.contains("customer-plan-info")) {
 
-            customer_plan.style.display = "none";
-            customer_plan_add_ons.style.display = "block";
-            two.style.backgroundColor = "transparent";
-            three.style.backgroundColor = "aqua";
-
+            if (flag_click_card_plan) {
+                customer_plan.style.display = "none";
+                customer_plan_add_ons.style.display = "block";
+                two.style.backgroundColor = "transparent";
+                three.style.backgroundColor = "aqua";
+            }
             
+            let extra_add_on_price = document.querySelectorAll('.extra-add-on-price');
+
+            if (budget) {
+                extra_add_on_price[0].innerText = "+$10/yr";
+                extra_add_on_price[1].innerText = "+$20/yr";
+                extra_add_on_price[2].innerText = "+$20/yr";
+            } else {
+                extra_add_on_price[0].innerText = "+$1/mo";
+                extra_add_on_price[1].innerText = "+$2/mo";
+                extra_add_on_price[2].innerText = "+$2/mo";
+            }
 
         } else if (event.target.parentElement.parentElement.classList.contains("customer-plan-add-ons")) {
 
-            customer_plan_add_ons.style.display = "none";
-            customer_finish_form.style.display = "block";
-            three.style.backgroundColor = "transparent";
-            four.style.backgroundColor = "aqua";
+            if(flag_click_add_ons){
+                customer_plan_add_ons.style.display = "none";
+                customer_finish_form.style.display = "block";
+                three.style.backgroundColor = "transparent";
+                four.style.backgroundColor = "aqua";
+            }
+            
+            let splitted_plan = plan_info.split('\n');
+
+            let basic_package = document.querySelector('#basic-package')
+            let basic_package_price = document.querySelector('#basic-package-price')
+            console.log(splitted_plan);
+            basic_package.textContent = splitted_plan[0];
+            basic_package_price.textContent = splitted_plan[2];
+            total_price1 = splitted_plan[2];
+            number1 = parseInt(total_price1.replace(/\D+/g, ''), 10);
+
+            console.log(number1);
+
+            let total_price_basic_add_ons = document.querySelector('#total-price-basic-add-ons');
+            console.log(number1 + number2);
+            total_price_basic_add_ons.textContent = number1 + number2;
+            total_price_basic_add_ons.textContent = total_price_basic_add_ons.textContent + "$";
 
         } else if (event.target.parentElement.parentElement.classList.contains("customer-finish-form")) {
 
@@ -139,14 +205,40 @@ function change_page(event) {
             three.style.backgroundColor = "aqua";
             four.style.backgroundColor = "transparent";
         }
-    } else if (event.target.className === "plan") {
+    } else if (event.target.className === "card-plan") {
 
+        event.target.style.border = "2px solid #174A8B";
+        flag_click_card_plan = true;
+
+        plan_info = event.target.innerText;
 
     } else if (event.target.classList.contains("checkbox")) {
 
+        let extra_add_on_detail = event.target.parentElement.nextElementSibling.firstElementChild.innerText;
+        let extra_add_on_price = event.target.parentElement.parentElement.nextElementSibling.firstElementChild.innerText;
+        let add_ons_service1 = document.querySelector("#add-ons-service1");
+        let add_ons_service1_price = document.querySelector("#add-ons-service1-price");
 
-    } else if (event.target.dataset.change === "change") {
+        if (event.target.checked) {
+            add_ons_service1.textContent = extra_add_on_detail;
+            add_ons_service1_price.textContent = extra_add_on_price;
+            total_price2 = extra_add_on_price;
+            number2 = parseInt(total_price2.replace(/\D+/g, ''), 10);
+            console.log(number2);
+            flag_click_add_ons = true;
 
+        } else {
+            add_ons_service1.textContent = "";
+            add_ons_service1_price.textContent = "";
+        }
 
+    } else if (event.target.classList.contains('change')) {
+        
+        customer_finish_form.style.display = "none";
+        customer_plan.style.display = "block";
+        three.style.backgroundColor = "transparent";
+        two.style.backgroundColor = "aqua";
     }
 };
+
+

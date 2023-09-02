@@ -15,6 +15,10 @@
 
 body {
     font-family: "Poppins", sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 p {
@@ -38,9 +42,7 @@ ul {
 
 .container {
     display: flex;
-    margin: 8rem;
-    height: 70vh;
-    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
 .primary-button {
@@ -155,15 +157,17 @@ input {
     display: flex;
     flex-direction: column;
     height: 100%;
+    gap: 2rem;
     justify-content: space-between;
 }
 
 .form-middle-section-customer-plan {
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
 }
 
-.form-middle-section-customer-plan .card {
+.card-plan {
     flex-basis: 18vw;
     display: flex;
     flex-direction: column;
@@ -177,13 +181,13 @@ input {
     transition: all 0.3s ease;
 }
 
-.card:hover {
+.card-plan:hover {
     box-shadow: 1px 1px 8px #d4ecff;
     background-color: #f9fdff;
     transform: translateY(-2px);
 }
 
-.card img {
+.card-plan img {
     height: 4rem;
     width: 4rem;
 }
@@ -218,6 +222,10 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 50%;
 }
 
+.yearly {
+    display: none;
+}
+
 /* page-3*/
 
 .customer-plan-add-ons {
@@ -232,7 +240,7 @@ input[type="range"]::-webkit-slider-thumb {
     justify-content: space-between;
 }
 
-.customer-plan-add-ons .card{
+.customer-plan-add-ons .services {
     display: flex;
     justify-content: space-between;
     border: 1px solid gray;
@@ -241,7 +249,7 @@ input[type="range"]::-webkit-slider-thumb {
     padding: 2rem;
 }
 
-.customer-plan-add-ons .card .left-part{
+.customer-plan-add-ons .services .left-part {
     display: flex;
     gap: 1rem;
 }
@@ -283,6 +291,17 @@ input[type="range"]::-webkit-slider-thumb {
     justify-content: space-between;
 }
 
+.basic-package-left-part {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-between;
+}
+
+.total-detail-end {
+    display: flex;
+    justify-content: space-between;
+}
+
 /*thank you page*/
 
 .last-part {
@@ -291,13 +310,20 @@ input[type="range"]::-webkit-slider-thumb {
     text-align: center;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 480px) {
+
+    body {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
     
     .container {
         flex-direction: column;
         height: 100%;
         margin: auto;
         position: relative;
+        box-shadow: none;
     }
 
     .container-left {
@@ -312,25 +338,20 @@ input[type="range"]::-webkit-slider-thumb {
         color: white;
     }
 
-    .customer-info {
-        flex-direction: column;  
-        margin: auto;
-        margin-top: -20%;
-        border: 1px solid black;
+    .form-card {
+        flex-direction: column;
+        margin-top: -10%;
         padding: 1rem;
-        height: 100vw;
         border-radius: 1rem;
-        position: absolute;
-        left: 0.5rem;
-        right: 3.5rem;
-        z-index: 1;
-
+        margin-inline: 2rem;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     }
 
+    .form-middle-section-customer-plan {
+        flex-direction: column;
+        gap: 1rem;
+    }
     .key2 {
         display: none;
     }
-
-    
-    
 }

@@ -97,30 +97,33 @@
           </div>
 
           <div class="form-middle-section-customer-plan">
-            <div class="card" id="arcade">
+            <div class="card-plan" id="arcade">
               <img src="./assets/images/icon-arcade.svg" alt="cheap">
 
               <div class="card-content">
                 <p>Arcade</p>
-                <p>$9/mo</p>
+                <p id="money-charges">$9/mo</p>
+                <p class="yearly" id="yearly">2 Months free</p>
               </div>
             </div>
 
-            <div class="card" id="advanced">
+            <div class="card-plan" id="advanced">
               <img src="./assets/images/icon-advanced.svg" alt="advanced-image">
 
               <div class="card-content">
                 <p>Advanced</p>
-                <p>$12/mo</p>
+                <p id="money-charges">$12/mo</p>
+                <p class="yearly" id="yearly">2 Months free</p>
               </div>
             </div>
 
-            <div class="card" id="pro">
+            <div class="card-plan" id="pro">
               <img src="./assets/images/icon-pro.svg" alt="pro-image">
 
               <div class="card-content">
                 <p>Pro</p>
-                <p>$15/mo</p>
+                <p id="money-charges">$15/mo</p>
+                <p class="yearly" id="yearly">2 Months free</p>
               </div>
             </div>
 
@@ -128,8 +131,9 @@
 
           <div class="choice">
 
-            <label for="choose">Monthly</label>
-            <input for="choice" type="range" min="0" max="1" id="choice" name="choice" onchange="plan_change()">
+            <label>Monthly</label>
+            <input for="choice" type="range" min="0" max="1" id="choice" name="choice" onchange="plan_change()"
+              value="0">
             <label>Yearly</label>
           </div>
 
@@ -150,10 +154,10 @@
           </div>
 
           <div class="middle-section">
-            <div class="card" id="online-service">
+            <div class="services" id="online-service">
               <div class="left-part">
                 <div class="choice">
-                  <input type="checkbox" class="checkbox">
+                  <input type="radio" class="checkbox" name="first-option">
                 </div>
                 <div class="content">
                   <p>Online service</p>
@@ -162,14 +166,14 @@
               </div>
 
               <div class="right-part">
-                <p>+$10/yr</p>
+                <p class="extra-add-on-price" id="extra-add-on-price-initial">+$10/yr</p>
               </div>
             </div>
 
-            <div class="card" id="larger-storage">
+            <div class="services" id="larger-storage">
               <div class="left-part">
                 <div class="choice">
-                  <input type="checkbox" class="checkbox">
+                  <input type="radio" class="checkbox" name="first-option">
                 </div>
                 <div class="content">
                   <p>Larger Storage</p>
@@ -178,14 +182,14 @@
               </div>
 
               <div class="right-part">
-                <p>+$20/yr</p>
+                <p class="extra-add-on-price" id="extra-add-on-price-middle">+$20/yr</p>
               </div>
             </div>
 
-            <div class="card" id="customized-profile">
+            <div class="services" id="customized-profile">
               <div class="left-part">
                 <div class="choice">
-                  <input type="checkbox" class="checkbox">
+                  <input type="radio" class="checkbox" name="first-option">
                 </div>
                 <div class="content">
                   <p>Customizable Profile</p>
@@ -194,7 +198,7 @@
               </div>
 
               <div class="right-part">
-                <p>+$20/yr</p>
+                <p class="extra-add-on-price" id="extra-add-on-price-expensive">+$20/yr</p>
               </div>
             </div>
 
@@ -220,26 +224,27 @@
           <div class="middle-section">
 
             <div class="top">
-              <div class="left-part">
-                <p>Pro</p>
-                <a href="#">Change</a>
+              <div class="basic-package-left-part">
+                <p id=basic-package></p>
+                <p id="basic-package-price"></p>
               </div>
-
-              <p>$150/yr</p>
             </div>
+
+            <a href="#" class="change">Change</a>
 
             <div class="middle">
-              <div class="left-part">
-                <p>Larger storage</p>
+              <div class="left-part1">
+                <p id="add-ons-service1"></p>
               </div>
-              <p>$20/yr</p>
+              <div class="right-part1">
+                <p id="add-ons-service1-price"></p>
+              </div>
             </div>
 
-            <div class="end">
-              <div class="left-part">
-                <p>Total(per Year)</p>
-              </div>
-              <p>+$170/yr</p>
+            <div class="total-detail-end">
+              <p class="total-detail-title">Total</p>
+              <p class="total-price-basic-add-ons" id="total-price-basic-add-ons"></p>
+
             </div>
           </div>
 
