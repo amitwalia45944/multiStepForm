@@ -200,7 +200,6 @@ input {
 .form-bottom-customer-plan {
     display: flex;
     justify-content: space-between;
-    margin-top: 4rem;
 }
 
 input[type="range"] {
@@ -326,8 +325,8 @@ input[type="range"]::-webkit-slider-thumb {
     .container {
         flex-direction: column;
         width: 100vw;
+        height: 100vh;
         margin: auto;
-        position: relative;
         overflow: auto;
         box-shadow: none;
     }
@@ -347,10 +346,9 @@ input[type="range"]::-webkit-slider-thumb {
     .form-card {
         flex-direction: column;
         margin-top: -10%;
-        height: 100%;
-        padding: 1rem;
+        padding: 2rem;
         border-radius: 1rem;
-        margin-inline: 2rem;
+        overflow: auto;
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     }
 
@@ -361,10 +359,18 @@ input[type="range"]::-webkit-slider-thumb {
     .form-middle-section-customer-plan {
         flex-direction: column;
         gap: 1rem;
-        height: 100%;
     }
 
     .key2 {
         display: none;
     }
+
+    .bottom {
+        padding: 1rem;
+    }
+
+    .form-bottom-customer-plan {
+        padding: 1rem;
+    }
+
 }
