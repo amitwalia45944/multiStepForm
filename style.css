@@ -249,7 +249,7 @@ input[type="range"]::-webkit-slider-thumb {
     justify-content: space-between;
     border: 1px solid gray;
     border-radius: 1rem;
-    padding: 2rem;
+    padding: 0.4rem;
 }
 
 .customer-plan-add-ons .bottom {
