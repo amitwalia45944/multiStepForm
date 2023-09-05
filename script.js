@@ -18,6 +18,7 @@ const thanksContainer = document.querySelector(".thanks");
 
 let flag_click_card_plan = false;
 let budget = false;
+let update_extra_price = 0;
 let plan_info;
 let total_price1;
 let total_price2;
@@ -135,7 +136,7 @@ function change_page(event) {
                 two.style.backgroundColor = "transparent";
                 three.style.backgroundColor = "aqua";
             }
-            
+
             let extra_add_on_price = document.querySelectorAll('.extra-add-on-price');
 
             if (budget) {
@@ -150,13 +151,13 @@ function change_page(event) {
 
         } else if (event.target.parentElement.parentElement.classList.contains("customer-plan-add-ons")) {
 
-            if(flag_click_add_ons){
+            if (flag_click_add_ons) {
                 customer_plan_add_ons.style.display = "none";
                 customer_finish_form.style.display = "block";
                 three.style.backgroundColor = "transparent";
                 four.style.backgroundColor = "aqua";
             }
-            
+
             let splitted_plan = plan_info.split('\n');
 
             let basic_package = document.querySelector('#basic-package');
@@ -169,7 +170,7 @@ function change_page(event) {
 
             let total_price_basic_add_ons = document.querySelector('#total-price-basic-add-ons');
 
-            total_price_basic_add_ons.textContent = number1 + number2;
+            total_price_basic_add_ons.textContent = number1 + update_extra_price;
             total_price_basic_add_ons.textContent = total_price_basic_add_ons.textContent + "$";
 
         } else if (event.target.parentElement.parentElement.classList.contains("customer-finish-form")) {
@@ -203,37 +204,76 @@ function change_page(event) {
             three.style.backgroundColor = "aqua";
             four.style.backgroundColor = "transparent";
         }
-        
+
     } else if (event.target.className === "card-plan") {
 
-        event.target.style.border = "2px solid #174A8B";
-        flag_click_card_plan = true;
+        if (!event.target.classList.contains('active')) {
+            
+            let cardPlans = document.querySelectorAll('.card-plan');
+            
+            cardPlans.forEach(function(card) {
+                card.classList.remove('active');
+            });
 
-        plan_info = event.target.innerText;
+            event.target.classList.add('active');
+            flag_click_card_plan = true;
+            plan_info = event.target.innerText;
+
+        } else {
+            event.target.classList.remove('active');
+
+            flag_click_card_plan = false;
+            plan_info = "";
+        }
 
     } else if (event.target.classList.contains("checkbox")) {
+
+        let item_id = event.target.getAttribute("data-item-id");
+        let content_element = document.querySelector(`.services#${item_id} .content`);
 
         let extra_add_on_detail = event.target.parentElement.nextElementSibling.firstElementChild.innerText;
         let extra_add_on_price = event.target.parentElement.parentElement.nextElementSibling.firstElementChild.innerText;
 
-        let add_ons_service1 = document.querySelector("#add-ons-service1");
-        let add_ons_service1_price = document.querySelector("#add-ons-service1-price");
-
         if (event.target.checked) {
-            add_ons_service1.textContent = extra_add_on_detail;
-            add_ons_service1_price.textContent = extra_add_on_price;
-            total_price2 = extra_add_on_price;
-            number2 = parseInt(total_price2.replace(/\D+/g, ''), 10);
-            console.log(number2);
+
+            let add_ons_service1 = document.querySelector("#add-on-services-detail");
+
+            let ad_container = document.createElement('div');
+
+            ad_container.style.display = 'flex';
+            ad_container.style.justifyContent = 'space-between';
+
+            let ad_content = document.createElement('p');
+            ad_content.setAttribute('data-ad-identifier', item_id);
+
+            ad_content.textContent = extra_add_on_detail;
+
+            let ad_price = document.createElement('p');
+            ad_price.textContent = extra_add_on_price;
+
+            ad_container.appendChild(ad_content);
+            ad_container.appendChild(ad_price);
+
+            add_ons_service1.appendChild(ad_container);
+
+            number2 = parseInt(extra_add_on_price.replace(/\D+/g, ''), 10);
+
+            update_extra_price += number2;
+
             flag_click_add_ons = true;
 
         } else {
-            add_ons_service1.textContent = "";
-            add_ons_service1_price.textContent = "";
+            update_extra_price -= number2;
+
+            let adContentToRemove = document.querySelector(`[data-ad-identifier="${item_id}"]`);
+            
+            if (adContentToRemove) {
+                adContentToRemove.parentElement.remove();
+            }
         }
 
     } else if (event.target.classList.contains('change')) {
-        
+
         customer_finish_form.style.display = "none";
         customer_plan.style.display = "block";
         four.style.backgroundColor = "transparent";

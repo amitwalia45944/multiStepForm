@@ -224,6 +224,10 @@ input[type="range"]::-webkit-slider-thumb {
     display: none;
 }
 
+.active {
+    border: 2px solid #174A8B;
+}
+
 /* page-3*/
 
 .customer-plan-add-ons {
@@ -258,6 +262,10 @@ input[type="range"]::-webkit-slider-thumb {
     gap: 1rem;
 }
 
+input[type="checkbox"]{
+    color: white;
+}
+
 /*page-4*/
 
 .customer-finish-form {
@@ -272,17 +280,18 @@ input[type="range"]::-webkit-slider-thumb {
     flex-direction: column;
     justify-content: space-between;
     gap: 1rem;
+    padding: 1rem;
+    box-shadow: 0 0 10px #92989e;
 }
 
 .customer-finish-form .middle-section .top {
     display: flex;
-    background-color: rgb(218, 214, 214);
     justify-content: space-between;
 }
 
-.customer-finish-form .middle-section .middle {
+.customer-finish-form .middle-section .add-on-services-detail {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
 .customer-finish-form .middle-section .end {
